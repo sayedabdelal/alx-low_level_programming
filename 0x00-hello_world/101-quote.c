@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 
 /**
  * main - Entry point
@@ -10,8 +11,6 @@
 
 int main(void)
 {
-	char ro[] = "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n";
-
-	write(1, ro, 59);
+	fputs ("and that piece of art is useful\" - Dora Korpar, 2015-10-19\n");
 	return (1);
 }
