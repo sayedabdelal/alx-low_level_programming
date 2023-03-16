@@ -1,0 +1,2 @@
+#!/bin/bash
+gcc -S -msm=intel $CFILE `echo $CFILE | cut -d. -f1`.s 
