@@ -33,5 +33,5 @@ int main(void)
 		two++;
 	}
 	putchar('\n');
-
+	return (0);
 }
