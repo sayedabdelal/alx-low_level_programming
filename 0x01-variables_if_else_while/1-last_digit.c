@@ -2,12 +2,15 @@
 #include <time.h>
 #include <stdio.h>
 
+/* more headers goes there */
+
+/* betty style doc for function main goes there */
 /**
- *main : entry point
- * 
- * Description : prints Last digit of number and compare it
+ * main - entry point
  *
- * Return : 0 (sucesses)
+ * Description : prints The Last Value and compare it .
+ *
+ * Return : Always 0 (success)
 */
 
 int main(void)
@@ -18,10 +21,10 @@ int main(void)
 	n = rand() - RAND_MAX / 2;
 	/* your code goes there */
 	if (n % 10 > 5)
-		printf("%i and is greater than 5\n", n);
+		printf("%d and is greater than 5\n", n);
 	else if (n % 10 == 0)
-	       printf("%i and is 0\n", n);
+		printf("%d and is 0\n", n);
 	else
-		printf("%i and is less than 6 and not 0\n", n);
+		printf("Last digit of %d is greater than 5\n", n);
 	return (0);
 }
