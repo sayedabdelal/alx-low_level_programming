@@ -34,7 +34,7 @@ int string_length(int num)
 int main(void)
 {
 	int count, intial0s;
-	unsigned long fib1 = 1, fib2 = 2, sum, mx = 1000000000, f1o = 0, f2o = 0;
+	unsigned long fib1 = 1, fib2 = 2, sum, mx = 100000000, f1o = 0, f2o = 0;
 	unsigned long sumo = 0;
 
 	for (count = 0; count < 99; count++)
