@@ -12,7 +12,7 @@ int main(void)
 {
 	int count;
 	unsigned long fib1 = 0, fib2 = 1, sum;
-       	float total_sum;
+	float total_sum;
 
 	for (count = 0; count < 33; count++)
 	{
