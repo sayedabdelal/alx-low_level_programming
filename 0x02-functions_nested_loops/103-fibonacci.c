@@ -13,15 +13,12 @@ int main(void)
 	int count;
 	unsigned long fib1 = 0, fib2 = 1, sum, total_sum;
 
-	for (count = 0; count < 50; count++)
+	for (count = 0; count < 33; count++)
 	{
 		sum = fib1 + fib2;
-		if (sum < 4000000)
-		{
-			if ((sum % 2) == 0)
-				total_sum += sum;
-		} else
-			break;
+
+		if (sum < 4000000 && (sum % 2) == 0)
+			total_sum += sum;
 		fib1 = fib2;
 		fib2 = sum;
 	}
