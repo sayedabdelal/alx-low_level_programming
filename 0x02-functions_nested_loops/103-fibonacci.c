@@ -12,7 +12,7 @@ int main(void)
 {
 	int count;
 	unsigned long fib1 = 0, fib2 = 1, sum;
-       	double total_sum;
+       	float total_sum;
 
 	for (count = 0; count < 33; count++)
 	{
@@ -23,6 +23,6 @@ int main(void)
 		fib1 = fib2;
 		fib2 = sum;
 	}
-	printf("%.0lf\n", total_sum);
+	printf("%.0f\n", total_sum);
 	return (0);
 }
