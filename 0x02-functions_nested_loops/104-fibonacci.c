@@ -45,7 +45,7 @@ int main(void)
 		while (f1o > 0 && intial0s > 0)
 		{
 			printf("%d", 0);
-				intial0s--;
+			intial0s--;
 		}
 		printf("%lu", fib1);
 		sum = (fib1 + fib2) % mx;
