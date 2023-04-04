@@ -14,11 +14,11 @@ char *_strpbrk(char *s, char *accept)
 
 	for (id = 0; s[id] != '\0'; id++)
 	{
-		for (j = 0; accept[jd] != '\0'; j++)
+		for (jd = 0; accept[jd] != '\0'; jd++)
 		{
 			if (s[id] == accept[jd])
 			{
-				p = &s[id]
+				p = &s[id];
 				return (p);
 			}
 		}
