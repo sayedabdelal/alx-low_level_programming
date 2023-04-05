@@ -22,10 +22,13 @@ int is_palindrome(char *s)
  *
  * Return: length array char
  */
+int n = 0;
+
 int _length_recursion(char *s)
 {
 	if (*s > '\0')
-		return (1 + _length_recursion(s + 1));
+		n += (1 + _length_recursion(s + 1));
+	return (n);
 }
 
 /**
