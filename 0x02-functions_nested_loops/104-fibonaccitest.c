@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+/**
+ * string_length - returns the length of string
+ *
+ * @num: operand number
+ *
+ * Return: number of digits
+*/
+
+int string_length(int num)
+{
+	int c = 0;
+
+	if (!num)
+		return (1);
+	while (num)
+	{
+		num = num / 10;
+		c += 1;
+	}
+	return (c);
+}
+
+/**
+ * main - Entry point
+ * Description : finds and prints the first 98 Fibonacci numbers
+ * starting with 1 and 2
+ * followed by a new line
+ *
+ * Return: ALways 0 (Success)
+*/
+
+int main(void)
+{
+	int count, intial0s;
+	unsigned long fib1 = 1, fib2 = 2, sum, mx = 100000000, f1o = 0, f2o = 0;
+	unsigned long sumo = 0;
+
+	for (count = 0; count < 99; count++)
+	{
+		if (f1o > 0)
+			printf("%lu", f1o);
+		intial0s = string_length(mx) - 1 - string_length(f1o);
+		while (f1o > 0 && intial0s > 0)
+		{
+			printf("%d", 0);
+			intial0s--;
+		}
+		printf("%lu", fib1);
+		sum = (fib1 + fib2) % mx;
+		sumo = f1o + f2o + (fib1 + fib2) / mx;
+		fib1 = fib2;
+		f1o = f2o;
+		fib2 = sum;
+		f2o = sumo;
+		if (count != 98)
+			printf(", ");
+		else
+			printf("\n");
+	}
+	return (0);
+}
