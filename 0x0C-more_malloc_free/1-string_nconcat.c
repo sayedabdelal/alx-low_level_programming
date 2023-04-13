@@ -28,7 +28,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	for (s2_len = 0; s2[s2_len] != '\0'; s2_len++)
 		;
 	/* memory reversation space for 1 & 2. 1>> null */
-	str = malloc(s1_len * n + 1);
+	str = malloc(s1_len + n + 1);
 
 	if (str == NULL)
 		return (NULL);
