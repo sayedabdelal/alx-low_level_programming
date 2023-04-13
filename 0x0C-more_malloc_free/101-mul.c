@@ -1,99 +1,149 @@
-#include <stdlib.h>
 #include <stdio.h>
-#include "main.h"
+#include <stdlib.h>
+#include <ctype.h>
 
 /**
- * is_digit - checks if a string contains a non-digit char
- * @s: string to be evaluated
+ * _isdigit - checks if a character is a digit
+ * @c: the character to check
  *
- * Return: 0 if a non-digit is found, 1 otherwise
+ * Return: 1 if c is a digit, 0 otherwise
  */
-int is_digit(char *s)
+int _isdigit(char c)
 {
-	int i = 0;
-
-	while (s[i])
-	{
-		if (s[i] < '0' || s[i] > '9')
-			return (0);
-		i++;
-	}
-	return (1);
+    return isdigit(c) ? 1 : 0;
 }
 
 /**
- * _strlen - returns the length of a string
- * @s: string to evaluate
+ * _strlen - computes the length of a string
+ * @s: the string to compute the length of
  *
  * Return: the length of the string
  */
 int _strlen(char *s)
 {
-	int i = 0;
+    int len = 0;
 
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
+    while (*s != '\0')
+    {
+        len++;
+        s++;
+    }
+
+    return len;
 }
 
 /**
- * errors - handles errors for main
+ * _atoi - converts a string to an integer
+ * @s: the string to convert
+ *
+ * Return: the integer value of the string
  */
-void errors(void)
+int _atoi(char *s)
 {
-	printf("Error\n");
-	exit(98);
+    int sign = 1;
+    int value = 0;
+
+    if (*s == '-')
+    {
+        sign = -1;
+        s++;
+    }
+
+    while (*s != '\0')
+    {
+        if (!_isdigit(*s))
+        {
+            fprintf(stderr, "Error\n");
+            exit(98);
+        }
+
+        value = value * 10 + (*s - '0');
+        s++;
+    }
+
+    return sign * value;
+}
+
+/**
+ * _itoa - converts an integer to a string
+ * @n: the integer to convert
+ * @s: the buffer to store the string in
+ *
+ * Return: a pointer to the buffer containing the string
+ */
+char *_itoa(int n, char *s)
+{
+    int i = 0;
+    int sign = 1;
+
+    if (n < 0)
+    {
+        sign = -1;
+        n = -n;
+    }
+
+    do
+    {
+        s[i++] = n % 10 + '0';
+        n /= 10;
+    } while (n > 0);
+
+    if (sign < 0)
+    {
+        s[i++] = '-';
+    }
+
+    s[i] = '\0';
+
+    /* Reverse the string */
+    int j = 0;
+    char temp;
+    while (j < i / 2)
+    {
+        temp = s[j];
+        s[j] = s[i - j - 1];
+        s[i - j - 1] = temp;
+        j++;
+    }
+
+    return s;
 }
 
 /**
  * main - multiplies two positive numbers
- * @argc: number of arguments
- * @argv: array of arguments
+ * @argc: the number of command-line arguments
+ * @argv: an array of command-line argument strings
  *
- * Return: always 0 (Success)
+ * Return: 0 on success, 98 on failure
  */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-	char *s1, *s2;
-	int len1, len2, len, i, carry, digit1, digit2, *result, a = 0;
+    int num1, num2, result;
+    char buffer[1024];
 
-	s1 = argv[1], s2 = argv[2];
-	if (argc != 3 || !is_digit(s1) || !is_digit(s2))
-		errors();
-	len1 = _strlen(s1);
-	len2 = _strlen(s2);
-	len = len1 + len2 + 1;
-	result = malloc(sizeof(int) * len);
-	if (!result)
-		return (1);
-	for (i = 0; i <= len1 + len2; i++)
-		result[i] = 0;
-	for (len1 = len1 - 1; len1 >= 0; len1--)
-	{
-		digit1 = s1[len1] - '0';
-		carry = 0;
-		for (len2 = _strlen(s2) - 1; len2 >= 0; len2--)
-		{
-			digit2 = s2[len2] - '0';
-			carry += result[len1 + len2 + 1] + (digit1 * digit2);
-			result[len1 + len2 + 1] = carry % 10;
-			carry /= 10;
-		}
-		if (carry > 0)
-			result[len1 + len2 + 1] += carry;
-	}
-	for (i = 0; i < len - 1; i++)
-	{
-		if (result[i])
-			a = 1;
-		if (a)
-			_putchar(result[i] + '0');
-	}
-	if (!a)
-		_putchar('0');
-	_putchar('\n');
-	free(result);
-	return (0);
+    /* Check the number of arguments */
+    if (argc != 3)
+    {
+        fprintf(stderr, "Error\n");
+        return 98;
+    }
+
+    /* Convert the arguments to integers */
+    num1 = _atoi(argv[1]);
+    num2 = _atoi(argv[2]);
+
+    /* Check that the arguments are positive */
+    if (num1 < 0 || num2 < 0)
+    {
+        fprintf(stderr, "Error\n");
+        return 98;
+    }
+
+    /* Multiply the numbers */
+    result = num1 * num2;
+
+    /* Convert the result to a string and print it */
+    printf("%s\n", _itoa(result, buffer));
+
+    return 0;
 }
