@@ -10,7 +10,7 @@
  */
 int _isdigit(char c)
 {
-    return isdigit(c) ? 1 : 0;
+	return (isdigit(c) ? 1 : 0);
 }
 
 /**
@@ -21,15 +21,15 @@ int _isdigit(char c)
  */
 int _strlen(char *s)
 {
-    int len = 0;
+	int len = 0;
 
-    while (*s != '\0')
-    {
-        len++;
-        s++;
-    }
+	while (*s != '\0')
+	{
+		len++;
+		s++;
+	}
 
-    return len;
+	return (len);
 }
 
 /**
@@ -40,28 +40,26 @@ int _strlen(char *s)
  */
 int _atoi(char *s)
 {
-    int sign = 1;
-    int value = 0;
+	int sign = 1;
+	int value = 0;
 
-    if (*s == '-')
-    {
-        sign = -1;
-        s++;
-    }
+	if (*s == '-')
+	{
+		sign = -1;
+		s++;
+	}
 
-    while (*s != '\0')
-    {
-        if (!_isdigit(*s))
-        {
-            fprintf(stderr, "Error\n");
-            exit(98);
-        }
-
-        value = value * 10 + (*s - '0');
-        s++;
-    }
-
-    return sign * value;
+	while (*s != '\0')
+	{
+		if (!_isdigit(*s))
+		{
+			fprintf(stderr, "Error\n");
+			exit(98);
+		}
+		value = value * 10 + (*s - '0');
+		s++;
+	}
+	return (sign * value);
 }
 
 /**
@@ -73,40 +71,35 @@ int _atoi(char *s)
  */
 char *_itoa(int n, char *s)
 {
-    int i = 0;
-    int sign = 1;
+	int i = 0;
+	int sign = 1;
+	int j;
+	char temp;
 
-    if (n < 0)
-    {
-        sign = -1;
-        n = -n;
-    }
-
-    do
-    {
-        s[i++] = n % 10 + '0';
-        n /= 10;
-    } while (n > 0);
-
-    if (sign < 0)
-    {
-        s[i++] = '-';
-    }
-
-    s[i] = '\0';
-
-    /* Reverse the string */
-    int j = 0;
-    char temp;
-    while (j < i / 2)
-    {
-        temp = s[j];
-        s[j] = s[i - j - 1];
-        s[i - j - 1] = temp;
-        j++;
-    }
-
-    return s;
+	if (n < 0)
+	{
+		sign = -1;
+		n = -n;
+	}
+	do {
+		s[i++] = n % 10 + '0';
+		n /= 10;
+	} while (n > 0);
+	if (sign < 0)
+	{
+		s[i++] = '-';
+	}
+	s[i] = '\0';
+	/* Reverse the string */
+	j = 0;
+	while (j < i / 2)
+	{
+		temp = s[j];
+		s[j] = s[i - j - 1];
+		s[i - j - 1] = temp;
+		j++;
+	}
+	return (s);
 }
 
 /**
@@ -118,32 +111,32 @@ char *_itoa(int n, char *s)
  */
 int main(int argc, char **argv)
 {
-    int num1, num2, result;
-    char buffer[1024];
+	int num1, num2, result;
+	char buffer[1024];
 
-    /* Check the number of arguments */
-    if (argc != 3)
-    {
-        fprintf(stderr, "Error\n");
-        return 98;
-    }
+	/* Check the number of arguments */
+	if (argc != 3)
+	{
+		fprintf(stderr, "Error\n");
+		return (98);
+	}
 
-    /* Convert the arguments to integers */
-    num1 = _atoi(argv[1]);
-    num2 = _atoi(argv[2]);
+	/* Convert the arguments to integers */
+	num1 = _atoi(argv[1]);
+	num2 = _atoi(argv[2]);
 
-    /* Check that the arguments are positive */
-    if (num1 < 0 || num2 < 0)
-    {
-        fprintf(stderr, "Error\n");
-        return 98;
-    }
+	/* Check that the arguments are positive */
+	if (num1 < 0 || num2 < 0)
+	{
+		fprintf(stderr, "Error\n");
+		return (98);
+	}
 
-    /* Multiply the numbers */
-    result = num1 * num2;
+	/* Multiply the numbers */
+	result = num1 * num2;
 
-    /* Convert the result to a string and print it */
-    printf("%s\n", _itoa(result, buffer));
+	/* Convert the result to a string and print it */
+	printf("%s\n", _itoa(result, buffer));
 
-    return 0;
+	return (0);
 }
