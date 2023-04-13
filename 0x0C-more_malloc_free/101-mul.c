@@ -57,6 +57,47 @@ int _atoi(char *s)
 }
 
 /**
+ * _itoa - converts an integer to a string
+ * @n: the integer to convert
+ * @s: the buffer to store the string in
+ *
+ * Return: a pointer to the buffer containing the string
+ */
+char *_itoa(int n, char *s)
+{
+	int i = 0;
+	int sign = 1;
+	int j;
+	char temp;
+
+	if (n < 0)
+	{
+		sign = -1;
+		n = -n;
+	}
+
+	do {
+		s[i++] = n % 10 + '0';
+		n /= 10;
+	} while (n > 0);
+	if (sign < 0)
+	{
+		s[i++] = '-';
+	}
+	s[i] = '\0';
+	/* Reverse the string */
+	j = 0;
+	while (j < i / 2)
+	{
+		temp = s[j];
+		s[j] = s[i - j - 1];
+		s[i - j - 1] = temp;
+		j++;
+	}
+	return (s);
+}
+
+/**
  * main - multiplies two positive numbers
  * @argc: the number of command-line arguments
  * @argv: an array of command-line argument strings
@@ -67,6 +108,7 @@ int _atoi(char *s)
 int main(int argc, char *argv[])
 {
 	int num1, num2, result, i, j;
+	char buffer[1024];
 
 	/* Check the number of arguments */
 	if (argc != 3)
@@ -92,6 +134,8 @@ int main(int argc, char *argv[])
 
 	/* Multiply the numbers */
 	result = num1 * num2;
-	printf("%d\n", result);
+	/* Convert the result to a string and print it */
+	printf("%s\n", _itoa(result, buffer));
+
 	return (0);
 }
