@@ -1,6 +1,6 @@
 section .data
 	hello db 'Hello, Holberton', 0
-	format db '%s\n', 0
+	newline db 10, 0
 
 section .text
 	global main
@@ -8,11 +8,15 @@ section .text
 	extern printf
 
 main:
-	; push the format string onto the stack
-	mov rdi, format
 	; push the hello string onto the stack
-	mov rsi, hello
-	; call printf with the format string and hello string
+	mov rdi, hello
+	; call printf with the hello string
+	xor eax, eax
+	call printf
+
+	; push the newline string onto the stack
+	mov rdi, newline
+	; call printf with the newline string
 	xor eax, eax
 	call printf
 
