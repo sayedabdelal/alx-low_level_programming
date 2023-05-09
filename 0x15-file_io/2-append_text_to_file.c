@@ -35,7 +35,8 @@ int append_text_to_file(const char *filename, char *text_content)
 	fd = open(filename, O_WRONLY | O_APPEND);
 	if (fd == -1)
 		return (-1);
-	if (len != NULL)
+	if (len != 0)
 		b_file = write(fd, text_content, len);
 	close(fd);
 	return (b_file == len ? 1 : -1);
+}
