@@ -1,8 +1,12 @@
 #include "main.h"
 #include <elf.h>
-
 void print_elf_header(Elf64_Ehdr *header);
-
+/**
+ * main - program 
+ * @argc: the number of arguments passed to the program
+ * @argv: an array of pointers to the arguments
+ * Return: 0 on success 0 in failure
+ */
 int main(int argc, char *argv[]) {
     int fd;
     Elf64_Ehdr header;
@@ -43,7 +47,12 @@ int main(int argc, char *argv[]) {
     }
     return (0);
 }
-
+/**
+ * print_elf_header- Prints the contents of an ELF header.
+ *
+ * @param header A pointer to the ELF header to print.
+ * Return: Print the other of the ELF header
+ */
 void print_elf_header(Elf64_Ehdr *header) {
     int i;
     printf("Magic:   ");
