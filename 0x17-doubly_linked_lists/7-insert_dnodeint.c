@@ -39,7 +39,6 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 		tmp = tmp->next;
 		idx--;
 	}
-	tmp2 = temp->next;
 	if (tmp == NULL)
 	{
 		free(newP);
