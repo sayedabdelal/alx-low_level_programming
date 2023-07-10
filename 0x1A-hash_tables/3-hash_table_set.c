@@ -13,16 +13,12 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	unsigned long int idx;
 	hash_node_t *tmp, *add_node;
 
-	/*Check for invalid input parameters */
 	if (ht == NULL || key == NULL || value == NULL)
 		return (0);
-	 /*Calculate the index where the key-value pair should be stored*/
 	idx = key_index((const unsigned char *)key, ht->size);
-	/*Traverse the linked list at the calculated index*/
 	tmp = ht->array[idx];
 	while (tmp != NULL)
 	{
-		/*If the key already exists, update the value and return*/
 		if (strcmp(tmp->key, key) == 0)
 		{
 			free(tmp->value);
